@@ -23,42 +23,40 @@ export class fieldDescription extends Component {
       meta
     } = this.props;
     return (
-      <>
-        <Fragment>
-          <FormControl>
-            <InputLabel
-              error={meta.error && meta.touched}
-              htmlFor={name}
-              required={require}
-            >
-              {label}
-            </InputLabel>
-            <Input
-              name={name}
-              id={name}
-              key={id}
-              endAdornment={<IconExplanation name={name} />}
-              error={meta.error && meta.touched}
-              inputProps={restInput}
-              value={value}
-              onChange={onChange}
-              type={name === "age" ? "number" : "text"}
-              min={name === "age" ? 1 : "undefined"}
-              required={require}
-            />
-            <FormHelperText error={meta.error && meta.touched}>
-              {meta.touched ? meta.error : undefined}
-            </FormHelperText>
-            <displayExplanation.Consumer>
-              {({ displayExplanation }) =>
-                displayExplanation === name && (
-                  <ExplanationText explanation={explanation} />
-                )
-              }
-            </displayExplanation.Consumer>
-          </FormControl>
-        </Fragment>
-      </>
+      <Fragment>
+        <FormControl>
+          <InputLabel
+            error={meta.error && meta.touched}
+            htmlFor={name}
+            required={require}
+          >
+            {label}
+          </InputLabel>
+          <Input
+            name={name}
+            id={name}
+            key={id}
+            endAdornment={<IconExplanation name={name} />}
+            error={meta.error && meta.touched}
+            inputProps={restInput}
+            value={value}
+            onChange={onChange}
+            type={name === "age" ? "number" : "text"}
+            min={name === "age" ? 1 : "undefined"}
+            required
+          />
+          <FormHelperText error={meta.error && meta.touched}>
+            {meta.touched ? meta.error : undefined}
+          </FormHelperText>
+          <displayExplanation.Consumer>
+            {({ displayExplanation }) =>
+              displayExplanation === name && (
+                <ExplanationText explanation={explanation} />
+              )
+            }
+          </displayExplanation.Consumer>
+        </FormControl>
+      </Fragment>
     );
   }
 }

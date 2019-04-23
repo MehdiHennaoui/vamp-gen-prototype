@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import Description from "./description/Description";
-import { Form, Field } from "react-final-form";
+import Clans from "./clans";
+import { Form } from "react-final-form";
+import setFieldData from "final-form-set-field-data";
 import displayExplanation from "../../context/displayExplanation";
 
-const onSubmit = () => {
-  console.log("coucou");
+const onSubmit = values => {
+  console.log(values);
 };
 
 const validate = values => {
@@ -49,16 +51,40 @@ class CreateVampireForm extends Component {
         <h1>création vampire</h1>
         <displayExplanation.Provider value={this.state}>
           <Form
-            onSubmit={onSubmit}
+            onSubmit={values => onSubmit(values)}
             validate={validate}
-            render={({ handleSubmit, form, pristine, submitting, invalid }) => (
-              <form onSubmit={handleSubmit}>
-                <Description />
-                <button type="submit" disabled={submitting || pristine}>
-                  Submit
-                </button>
-              </form>
-            )}
+            mutators={{
+              changeClanValue: ([args], state, utils) => {
+                utils.changeValue(state, "clan", () => args);
+              }
+            }}
+            render={({
+              handleSubmit,
+              pristine,
+              submitting,
+              values,
+              form: { mutators }
+            }) => {
+              const displayClans =
+                values.player &&
+                values.vampire &&
+                values.age &&
+                values.nature &&
+                values.demeanor ? (
+                  <Clans />
+                ) : null;
+              return (
+                <form onSubmit={handleSubmit}>
+                  <pre>{JSON.stringify(values, 0, 2)}</pre>
+                  <Description />
+                  {<Clans {...mutators} />}
+
+                  <button type="submit" disabled={submitting || pristine}>
+                    Submit
+                  </button>
+                </form>
+              );
+            }}
           />
         </displayExplanation.Provider>
       </div>

@@ -2,3 +2,15 @@
   font-family: sans-serif;
   text-align: center;
 }
+
+.slick-slider {
+  margin: 30px;
+}
+
+.slick-slider .slick-arrow {
+  color: #000;
+}
+
+.slick-arrow:before {
+  display: none;
+}
