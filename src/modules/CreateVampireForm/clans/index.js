@@ -3,7 +3,6 @@ import Slider from "react-slick";
 import { clans } from "../../../utils/data";
 import Icon from "@material-ui/core/Icon";
 import { Field } from "react-final-form";
-import setFieldData from "final-form-set-field-data";
 
 const NextArrow = ({ className, onClick, name }) => (
   <Icon className={className} onClick={onClick}>

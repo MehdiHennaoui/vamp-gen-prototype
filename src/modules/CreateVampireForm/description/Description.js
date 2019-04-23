@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { dataDescription } from "./../../../utils/data";
 import FieldDescription from "./../../../components/fieldDescription";
 import { Field } from "react-final-form";
-import newId from "./../../../utils/newId";
 
 class Description extends Component {
   render() {

@@ -1,5 +1,4 @@
 import Input from "@material-ui/core/Input";
-import TextField from "@material-ui/core/TextField";
 import InputLabel from "@material-ui/core/InputLabel";
 import React, { Component, Fragment } from "react";
 import IconExplanation from "./IconExplanation";
@@ -43,7 +42,7 @@ export class fieldDescription extends Component {
             onChange={onChange}
             type={name === "age" ? "number" : "text"}
             min={name === "age" ? 1 : "undefined"}
-            required
+            required={require}
           />
           <FormHelperText error={meta.error && meta.touched}>
             {meta.touched ? meta.error : undefined}

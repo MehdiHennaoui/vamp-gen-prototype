@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Description from "./description/Description";
 import Clans from "./clans";
 import { Form } from "react-final-form";
-import setFieldData from "final-form-set-field-data";
 import displayExplanation from "../../context/displayExplanation";
 
 const onSubmit = values => {
@@ -20,9 +19,6 @@ const validate = values => {
   }
   if (!values.age) {
     errors.age = require;
-  }
-  if (values.age < 0) {
-    errors.age = "un vampire ne peut pas avoir un age négatif";
   }
   if (!values.nature) {
     errors.nature = require;
@@ -53,6 +49,10 @@ class CreateVampireForm extends Component {
           <Form
             onSubmit={values => onSubmit(values)}
             validate={validate}
+            initialValues={{
+              clan: "Brujah",
+              age: 20
+            }}
             mutators={{
               changeClanValue: ([args], state, utils) => {
                 utils.changeValue(state, "clan", () => args);
@@ -78,7 +78,6 @@ class CreateVampireForm extends Component {
                   <pre>{JSON.stringify(values, 0, 2)}</pre>
                   <Description />
                   {<Clans {...mutators} />}
-
                   <button type="submit" disabled={submitting || pristine}>
                     Submit
                   </button>
