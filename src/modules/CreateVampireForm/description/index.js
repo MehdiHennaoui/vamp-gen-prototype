@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { dataDescription } from "./../../../utils/data";
-import FieldDescription from "./../../../components/fieldDescription";
-import { Field } from "react-final-form";
+import FieldDescription from "./../../../components/FieldDescription";
 
 class Description extends Component {
   render() {
@@ -9,9 +8,7 @@ class Description extends Component {
       <>
         <h2>Description</h2>
         {dataDescription.map(item => {
-          return (
-            <Field key={item.name} {...item} component={FieldDescription} />
-          );
+          return <FieldDescription key={item.name} {...item} />;
         })}
       </>
     );
